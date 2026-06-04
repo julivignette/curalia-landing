@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curalia — Your skin. Finally understood.</title>
+  <meta name="description" content="Skincare intelligence built to know your actual skin, not your 'skin type'. Join the waitlist." />
+  <meta property="og:title" content="Curalia — Your skin. Finally understood." />
+  <meta property="og:description" content="Skincare intelligence built to know your actual skin, not your skin type." />
+  <meta property="og:url" content="https://curalia.co" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum: #2D0A1E;
+      --plum-mid: #4A1030;
+      --plum-light: #6B1E42;
+      --burgundy: #8B2252;
+      --lilac: #C9A8C0;
+      --lilac-light: #E8D5E4;
+      --lilac-pale: #F5EDF3;
+      --sand: #F0E8DF;
+      --sand-dark: #D4C4B8;
+      --neon: #E8FF6B;
+      --white: #FDFAF8;
+      --text-dark: #1A0812;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(253, 250, 248, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid rgba(45, 10, 30, 0.08);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--plum);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--plum);
+      border: none;
+      padding: 0.6rem 1.25rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--plum-mid); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      padding-top: 5rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.2s;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--plum);
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.35s;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--burgundy);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--plum-light);
+      max-width: 340px;
+      margin-bottom: 2.25rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.5s;
+    }
+
+    .hero-cta {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--plum);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.65s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .hero-cta:hover {
+      background: var(--plum-mid);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(45,10,30,0.2);
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.8s;
+    }
+
+    .hero-image-wrap img {
+      width: min(380px, 90vw);
+      border-radius: 20px 20px 0 0;
+      display: block;
+    }
+
+    /* Decorative blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 {
+      width: 400px; height: 400px;
+      background: rgba(201,168,192,0.25);
+      top: -100px; right: -100px;
+    }
+    .blob-2 {
+      width: 300px; height: 300px;
+      background: rgba(139,34,82,0.1);
+      bottom: 0; left: -80px;
+    }
+
+    /* HOW IT WORKS */
+    .how {
+      padding: 5rem 1.5rem;
+      background: var(--white);
+    }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sand-dark);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      max-width: 480px;
+      margin: 0 auto 3rem;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 1rem;
+      align-items: start;
+      padding: 1.5rem 0;
+      border-bottom: 0.5px solid rgba(45,10,30,0.08);
+      opacity: 0;
+      transform: translateX(-16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .step:last-child { border-bottom: none; }
+    .step.visible { opacity: 1; transform: translateX(0); }
+
+    .step-num {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 400;
+      color: var(--lilac);
+      line-height: 1;
+      padding-top: 2px;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--plum);
+      margin-bottom: 0.35rem;
+    }
+
+    .step-desc {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--plum-light);
+      line-height: 1.6;
+    }
+
+    .how-cta-wrap { text-align: center; }
+
+    /* WHY SECTION — dark */
+    .why {
+      background: var(--plum);
+      padding: 5rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: rgba(139,34,82,0.3);
+      top: -200px; right: -150px;
+      pointer-events: none;
+    }
+
+    .why .section-label { color: rgba(201,168,192,0.5); }
+
+    .why-intro {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--lilac-light);
+      text-align: center;
+      max-width: 400px;
+      margin: 0 auto 3.5rem;
+      line-height: 1.3;
+    }
+
+    .stats {
+      max-width: 480px;
+      margin: 0 auto 4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .stat {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.25rem;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .stat.visible { opacity: 1; transform: translateY(0); }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 12vw, 5rem);
+      font-weight: 500;
+      color: var(--neon);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-text {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--lilac-light);
+      line-height: 1.5;
+    }
+
+    .quotes {
+      max-width: 480px;
+      margin: 0 auto 3.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .quote-card {
+      background: rgba(255,255,255,0.05);
+      border: 0.5px solid rgba(201,168,192,0.2);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .quote-card.visible { opacity: 1; transform: translateY(0); }
+
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--lilac-light);
+      line-height: 1.6;
+    }
+
+    .why-footnote {
+      text-align: center;
+      font-size: 0.7rem;
+      color: rgba(201,168,192,0.4);
+      max-width: 380px;
+      margin: 0 auto 3rem;
+      line-height: 1.6;
+    }
+
+    .why-cta-wrap { text-align: center; }
+
+    .cta-light {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--plum);
+      background: var(--neon);
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .cta-light:hover {
+      background: #d4eb5a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,255,107,0.25);
+    }
+
+    /* PROMISE */
+    .promise {
+      background: var(--lilac-pale);
+      padding: 5rem 1.5rem;
+    }
+
+    .promise .section-label { color: var(--sand-dark); }
+
+    .promise-cards {
+      max-width: 480px;
+      margin: 0 auto 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .promise-card {
+      background: var(--white);
+      border: 0.5px solid rgba(45,10,30,0.08);
+      border-radius: 16px;
+      padding: 1.75rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .promise-card.visible { opacity: 1; transform: translateY(0); }
+
+    .promise-card-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--plum);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .promise-card-title span {
+      font-style: italic;
+      color: var(--burgundy);
+    }
+
+    .promise-card-desc {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--plum-light);
+      line-height: 1.65;
+    }
+
+    .promise-cta-wrap { text-align: center; }
+
+    /* WAITLIST */
+    .waitlist {
+      background: var(--plum);
+      padding: 6rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .waitlist::after {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: rgba(139,34,82,0.2);
+      bottom: -300px; left: -200px;
+      pointer-events: none;
+    }
+
+    .waitlist-inner {
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .waitlist-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 8vw, 3.5rem);
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--lilac-light);
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .waitlist-title em {
+      font-style: italic;
+      color: var(--neon);
+    }
+
+    .waitlist-sub {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--lilac);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .form-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .email-input {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border-radius: 100px;
+      border: 0.5px solid rgba(201,168,192,0.3);
+      background: rgba(255,255,255,0.07);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      -webkit-appearance: none;
+    }
+    .email-input::placeholder { color: rgba(201,168,192,0.5); }
+    .email-input:focus {
+      border-color: rgba(201,168,192,0.6);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 100px;
+      border: none;
+      background: var(--neon);
+      color: var(--plum);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .submit-btn:hover {
+      background: #d4eb5a;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(232,255,107,0.2);
+    }
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-note {
+      font-size: 0.7rem;
+      color: rgba(201,168,192,0.4);
+      line-height: 1.5;
+      margin-top: 0.5rem;
+    }
+
+    .success-state {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .success-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(232,255,107,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .success-title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: var(--lilac-light);
+    }
+
+    .success-sub {
+      font-size: 0.875rem;
+      font-weight: 300;
+      color: var(--lilac);
+      line-height: 1.6;
+    }
+
+    .error-msg {
+      font-size: 0.8rem;
+      color: #ff9eb5;
+      display: none;
+      margin-top: 0.25rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--plum);
+      border-top: 0.5px solid rgba(201,168,192,0.1);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--lilac);
+      letter-spacing: -0.01em;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(201,168,192,0.3);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Stagger delays for step and promise cards */
+    .step:nth-child(1) { transition-delay: 0s; }
+    .step:nth-child(2) { transition-delay: 0.1s; }
+    .step:nth-child(3) { transition-delay: 0.2s; }
+    .step:nth-child(4) { transition-delay: 0.3s; }
+    .stat:nth-child(1) { transition-delay: 0s; }
+    .stat:nth-child(2) { transition-delay: 0.15s; }
+    .stat:nth-child(3) { transition-delay: 0.3s; }
+    .quote-card:nth-child(1) { transition-delay: 0s; }
+    .quote-card:nth-child(2) { transition-delay: 0.1s; }
+    .quote-card:nth-child(3) { transition-delay: 0.2s; }
+    .promise-card:nth-child(1) { transition-delay: 0s; }
+    .promise-card:nth-child(2) { transition-delay: 0.12s; }
+    .promise-card:nth-child(3) { transition-delay: 0.24s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Curalia.</a>
+    <a href="#waitlist" class="nav-cta">Get early access</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Skincare intelligence</p>
+      <h1 class="hero-title">Your skin.<br><em>Finally</em><br>understood.</h1>
+      <p class="hero-sub">Built to know your actual skin — not your "skin type".</p>
+      <a href="#waitlist" class="hero-cta">Get early access</a>
+    </div>
+    <div class="hero-image-wrap">
+      <img
+        src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=760&q=80&auto=format&fit=crop"
+        alt="Skincare products arranged on a surface"
+        width="380"
+        height="320"
+        style="object-fit: cover; height: 320px;"
+      />
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <p class="section-label">How it works</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <div>
+          <p class="step-title">Your skin profile</p>
+          <p class="step-desc">Build a profile around your actual skin — not a generic type.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <div>
+          <p class="step-title">What works for you</p>
+          <p class="step-desc">See what ingredients and products work for your skin, and what doesn't.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <div>
+          <p class="step-title">Best prices</p>
+          <p class="step-desc">Get product matches and find the best price across retailers.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">4</span>
+        <div>
+          <p class="step-title">Scan in store</p>
+          <p class="step-desc">Scan any product before you buy. Know instantly if it's right for you.</p>
+        </div>
+      </div>
+    </div>
+    <div class="how-cta-wrap">
+      <a href="#waitlist" class="hero-cta" style="animation: none; opacity: 1;">Get early access</a>
+    </div>
+  </section>
+
+  <!-- WHY CURALIA EXISTS -->
+  <section class="why">
+    <p class="section-label">This is why Curalia exists</p>
+    <p class="why-intro">You've spent money on products that didn't work. So has almost everyone.</p>
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">72%</span>
+        <span class="stat-text">of people find the skincare market overwhelming.</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">65%</span>
+        <span class="stat-text">have bought a product that didn't work, despite the reviews.</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">83%</span>
+        <span class="stat-text">don't understand an ingredient list.</span>
+      </div>
+    </div>
+    <div class="quotes">
+      <div class="quote-card">
+        <p class="quote-text">"I just take a picture and ask AI. There's no easy way to know what's actually in something."</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">"I've never bought a product that actually worked for me. It's always trial and error."</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-text">"My skin changes completely with the seasons. Every time it does, I don't know where to start."</p>
+      </div>
+    </div>
+    <p class="why-footnote">Based on a survey of 130 skincare users conducted by Curalia, 2026.</p>
+    <div class="why-cta-wrap">
+      <a href="#waitlist" class="cta-light">Get early access</a>
+    </div>
+  </section>
+
+  <!-- OUR PROMISE -->
+  <section class="promise">
+    <p class="section-label">Our promise</p>
+    <div class="promise-cards">
+      <div class="promise-card">
+        <p class="promise-card-title">No ads. No <span>influencer</span> deals.</p>
+        <p class="promise-card-desc">Influencers get paid to recommend things. We don't. What shows up in your profile is based on your skin, not a deal.</p>
+      </div>
+      <div class="promise-card">
+        <p class="promise-card-title">No <span>sponsored</span> products.</p>
+        <p class="promise-card-desc">Every recommendation in Curalia is based on your skin profile and what's worked for people like you.</p>
+      </div>
+      <div class="promise-card">
+        <p class="promise-card-title">No <span>hidden</span> agenda.</p>
+        <p class="promise-card-desc">When you buy through Curalia, we may earn a small commission. It never changes what we recommend.</p>
+      </div>
+    </div>
+    <div class="promise-cta-wrap">
+      <a href="#waitlist" class="hero-cta" style="animation: none; opacity: 1;">Get early access</a>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section class="waitlist" id="waitlist">
+    <div class="waitlist-inner">
+      <h2 class="waitlist-title">Be the first<br>to <em>know</em> your skin.</h2>
+      <p class="waitlist-sub">Join the waitlist. We'll let you know when early access opens.</p>
+
+      <div class="form-wrap" id="formWrap">
+        <input
+          type="email"
+          class="email-input"
+          id="emailInput"
+          placeholder="your@email.com"
+          autocomplete="email"
+          inputmode="email"
+        />
+        <p class="error-msg" id="errorMsg">Something went wrong. Please try again.</p>
+        <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+          Join the waitlist
+        </button>
+        <p class="form-note">No spam. No pushy emails. Just early access when it's ready.</p>
+      </div>
+
+      <div class="success-state" id="successState">
+        <div class="success-icon">✦</div>
+        <p class="success-title">You're on the list.</p>
+        <p class="success-sub">We'll be in touch when early access opens.<br>Your skin will thank you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Curalia.</span>
+    <p class="footer-copy">© 2026 Curalia. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const SUPABASE_URL = 'https://tyrdtkuygvzxkvyxalyo.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5cmR0a3V5Z3Z6eGt2eXhhbHlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczNTg2MTMsImV4cCI6MjA5MjkzNDYxM30.SnHFg21cmigYRdK81NcE42I5AC22-K1QpaWUUjGz3Wg';
+
+    async function handleSubmit() {
+      const input = document.getElementById('emailInput');
+      const btn = document.getElementById('submitBtn');
+      const errorMsg = document.getElementById('errorMsg');
+      const email = input.value.trim();
+
+      errorMsg.style.display = 'none';
+
+      if (!email || !email.includes('@')) {
+        input.style.borderColor = 'rgba(255,158,181,0.6)';
+        input.focus();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Joining...';
+      input.style.borderColor = '';
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ email })
+        });
+
+        if (res.ok || res.status === 409) {
+          document.getElementById('formWrap').style.display = 'none';
+          const success = document.getElementById('successState');
+          success.style.display = 'flex';
+        } else {
+          throw new Error('API error');
+        }
+      } catch (e) {
+        btn.disabled = false;
+        btn.textContent = 'Join the waitlist';
+        errorMsg.style.display = 'block';
+      }
+    }
+
+    document.getElementById('emailInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleSubmit();
+    });
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.step, .stat, .quote-card, .promise-card').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
