@@ -140,7 +140,12 @@
       display: block;
     }
 
-    .hero-bg-mobile { display: none; }
+  .hero-bg-mobile {
+  display: block;
+  width: calc(100% - 40px);
+  margin: 0 auto;
+  border-radius: 12px; /* optional, if you want rounded corners */
+}
 
     @media (max-width: 768px) {
       .hero-bg-desktop { display: none; }
