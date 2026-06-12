@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Curalia — Your skin. Finally understood.</title>
+  <title>Curalia. Your skin, finally understood.</title>
   <meta name="description" content="Skincare intelligence built to know your actual skin, not your 'skin type'. Join the waitlist." />
   <meta property="og:title" content="Curalia — Your skin. Finally understood." />
 <meta property="og:description" content="Skincare intelligence built to know your actual skin, not your skin type." />
@@ -165,6 +165,28 @@
       .hero-bg-desktop { display: none; }
       .hero-bg-mobile  { display: block; width: 100%; height: auto; }
     }
+
+    /* ── BURGUNDY BANNER ── */
+.banner {
+  background: #380C15;
+  padding: 0 60px;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.banner-text {
+  font-family: var(--font-ui);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 300;
+  color: var(--lilac);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  max-width: 760px;
+  margin: 0 auto;
+}
 
     /* ── HOW IT WORKS ── */
     .how { background: var(--white); padding: 64px 60px 80px; }
@@ -549,6 +571,10 @@
       <img class="hero-bg hero-bg-mobile" src="Hero_mobile.png" alt="Curalia app on phone" />
     </div>
   </section>
+  <!-- BURGUNDY BANNER -->
+<section class="banner">
+  <p class="banner-text">Most skincare advice isn't built around you.<br>Curalia is built around what already works for your skin.</p>
+</section>
 
   <!-- HOW IT WORKS -->
   <section class="how">
